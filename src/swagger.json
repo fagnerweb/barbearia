@@ -1,0 +1,94 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "RentaX Documentation",
+        "description": "This is an API Rent",
+        "version": "1.0.0",
+        "contact": {
+            "email": "fagnermar.silva@gmail.com"
+        }
+    },
+    "paths": {
+        "/barbershop": {
+            "post": {
+                "tags": ["BarberShop"],
+                "summary": "Cadastra uma nova barbearia",
+                "description": "Cadastra uma nova barbearia",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "MichidoSan",
+                                    "address": "Avenida Diamantina 827",
+                                    "city": "Couto de Magalhães",
+                                    "state": "MG",
+                                    "zipCode": "39188000",
+                                    "phone": "38998500024",
+                                    "email": "fabricio.junior@gmail.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description": "Barbearia já cadastrada"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["BarberShop"],
+                "summary": "Lista todas as barbearias",
+                "description": "Lista todas as barbearias",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "address": {
+                                            "type": "string"
+                                        },
+                                        "city": {
+                                            "type": "string"
+                                        },
+                                        "state": {
+                                            "type": "string"
+                                        },
+                                        "zipCode": {
+                                            "type": "string"
+                                        },
+                                        "phone": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
