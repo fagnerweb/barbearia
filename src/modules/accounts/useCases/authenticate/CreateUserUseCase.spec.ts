@@ -32,28 +32,29 @@ describe("Authenticate User", () => {
         expect(result).toHaveProperty("token");
     });
 
-    it("should not be able to authenticate an incorrect password", () => {
-        expect(async () => {
-            await authenticateUseUseCase.execute({
+    it("should not be able to authenticate an incorrect password", async () => {
+        await expect(
+            authenticateUseUseCase.execute({
                 email: "false@email.com",
                 password: "12345678",
-            });
-        }).rejects.toBeInstanceOf(AppError);
+            })
+        ).rejects.toBeInstanceOf(AppError);
     });
 
     it("should not be able to authenticate an incorrect password", async () => {
-        expect(async () => {
-            const user: ICreateUserDTO = {
-                name: "Fagner",
-                email: "fagner@email.com",
-                password: "12345678",
-            };
+        const user: ICreateUserDTO = {
+            name: "Fagner",
+            email: "fagner@email.com",
+            password: "12345678",
+        };
 
-            await createUserUseCase.execute(user);
-            await authenticateUseUseCase.execute({
+        await createUserUseCase.execute(user);
+
+        await expect(
+            authenticateUseUseCase.execute({
                 email: user.email,
                 password: "87654321",
-            });
-        }).rejects.toBeInstanceOf(AppError);
+            })
+        ).rejects.toBeInstanceOf(AppError);
     });
 });
